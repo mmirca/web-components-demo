@@ -7,16 +7,23 @@ class WordCountComponent extends HTMLElement {
   }
 
   get $cache() {
-    return {
+    if (this._$cache) {
+      return this._$cache;
+    }
+    this._$cache = {
       textarea: this.shadowRoot.getElementById('textarea'),
       wordcount: this.shadowRoot.getElementById('wordcount'),
       charcount: this.shadowRoot.getElementById('charcount'),
       reset: this.shadowRoot.getElementById('reset'),
     }
+    return this._$cache;
   }
 
   get handlers() {
-    return {
+    if (this._handlers) {
+      return this._handlers;
+    }
+    this._handlers = {
       updateCount: (() => {
         if (!this.$cache.textarea.value) {
           this.wordCount = 0;
@@ -32,6 +39,7 @@ class WordCountComponent extends HTMLElement {
         this.handlers.updateCount();
       }).bind(this)
     }
+    return this._handlers;
   }
 
   set wordCount(count) {
@@ -49,10 +57,11 @@ class WordCountComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('Component is ready')
+    console.log('Component is ready');
     this.$cache.textarea.addEventListener('keyup', this.handlers.updateCount);
     this.handlers.updateCount();
     this.$cache.reset.addEventListener('click', this.handlers.reset);
+    console.log(this.handlers.updateCount === this.handlers.updateCount);
   }
   
   disconnectedCallback() {
