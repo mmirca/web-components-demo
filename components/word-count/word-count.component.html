@@ -1,17 +1,14 @@
 <template>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="./components/word-count/word-count.component.css">
-  <div class="container">
-    <h2>Word Count Component</h2>
-    <div class="row">
-      <p>Caracteres contados: <b id="charcount"></b></p>
+  <div class="wrapper">
+    <div class="container border py-4 px-3">
+      <h2 class="text-secondary border-bottom pb-2 mb-3">Word Counter</h2>
+      <p class="mb-2">Palabras contadas: <b class="text-primary" id="wordcount"></b></p>
+      <p class="mb-4">Caracteres contados: <b class="text-primary" id="charcount"></b></p>
+      <textarea class="mb-3 p-2 form-control" id="textarea">Este componente utiliza bootstrap sin afectar al resto de la página </textarea>
+      <button id="reset" class="btn btn-secondary btn-block">Reset</button>
     </div>
-    <div class="row">
-      <p>Palabras contadas: <b id="wordcount"></b></p>
-      <div>
-        <button>Reset</button>
-      </div>
-    </div>
-    <textarea id="textarea">Escribe aquí tu texto... </textarea>
   </div>
 </template>
 <script src="./word-count.component.js"></script>
