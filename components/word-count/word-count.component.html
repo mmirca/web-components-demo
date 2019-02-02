@@ -3,12 +3,15 @@
   <div class="container">
     <h2>Word Count Component</h2>
     <div class="row">
-      <p>Palabras contadas: </p>
+      <p>Caracteres contados: <b id="charcount"></b></p>
+    </div>
+    <div class="row">
+      <p>Palabras contadas: <b id="wordcount"></b></p>
       <div>
         <button>Reset</button>
       </div>
     </div>
-    <textarea>Escribe aquí tu texto... </textarea>
+    <textarea id="textarea">Escribe aquí tu texto... </textarea>
   </div>
 </template>
 <script src="./word-count.component.js"></script>

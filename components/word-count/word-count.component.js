@@ -1,25 +1,57 @@
 class WordCountComponent extends HTMLElement {
 
-  get link() {
-    return document.querySelector(`link[rel="import"][href="${ this.path }"]`);
-  }
   get template() {
-    return this.link.import.querySelector('template').innerHTML;
+    const path = 'components/word-count/word-count.component.html';
+    const link = document.querySelector(`link[rel="import"][href="${ path }"]`);
+    return link.import.querySelector('template').innerHTML;
+  }
+
+  get $cache() {
+    return {
+      textarea: this.shadowRoot.querySelector('#textarea'),
+      wordcount: this.shadowRoot.querySelector('#wordcount'),
+      charcount: this.shadowRoot.querySelector('#charcount'),
+    }
+  }
+
+  get handlers() {
+    return {
+      updateCount: (() => {
+        if (!this.$cache.textarea.value) {
+          this.wordCount = 0;
+          this.charCount = 0;
+          return;
+        }
+        const split = this.$cache.textarea.value.trim().split(' ');
+        this.wordCount = split.length;
+        this.charCount = split.join('').length;
+      }).bind(this)
+    }
+  }
+
+  set wordCount(count) {
+    this.$cache.wordcount.innerText = count;
+  }
+
+  set charCount(count) {
+    this.$cache.charcount.innerText = count;
   }
 
   constructor() {
     super();
     this.attachShadow({mode: 'open'});
-    this.path = 'components/word-count/word-count.component.html';
     this.shadowRoot.innerHTML = this.template;
   }
 
   connectedCallback() {
     console.log('Component is ready')
+    this.$cache.textarea.addEventListener('keyup', this.handlers.updateCount);
+    this.handlers.updateCount();
   }
-
+  
   disconnectedCallback() {
     console.log('Component was removed');
+    this.$cache.textarea.removeEventListener('keyup', this.handlers.updateCount);
   }
 
 }
