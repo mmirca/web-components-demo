@@ -8,9 +8,10 @@ class WordCountComponent extends HTMLElement {
 
   get $cache() {
     return {
-      textarea: this.shadowRoot.querySelector('#textarea'),
-      wordcount: this.shadowRoot.querySelector('#wordcount'),
-      charcount: this.shadowRoot.querySelector('#charcount'),
+      textarea: this.shadowRoot.getElementById('textarea'),
+      wordcount: this.shadowRoot.getElementById('wordcount'),
+      charcount: this.shadowRoot.getElementById('charcount'),
+      reset: this.shadowRoot.getElementById('reset'),
     }
   }
 
@@ -25,6 +26,10 @@ class WordCountComponent extends HTMLElement {
         const split = this.$cache.textarea.value.trim().split(' ');
         this.wordCount = split.length;
         this.charCount = split.join('').length;
+      }).bind(this),
+      reset: (() => {
+        this.$cache.textarea.value = '';
+        this.handlers.updateCount();
       }).bind(this)
     }
   }
@@ -47,11 +52,13 @@ class WordCountComponent extends HTMLElement {
     console.log('Component is ready')
     this.$cache.textarea.addEventListener('keyup', this.handlers.updateCount);
     this.handlers.updateCount();
+    this.$cache.reset.addEventListener('click', this.handlers.reset);
   }
   
   disconnectedCallback() {
     console.log('Component was removed');
     this.$cache.textarea.removeEventListener('keyup', this.handlers.updateCount);
+    this.$cache.reset.removeEventListener('click', this.handlers.reset);
   }
 
 }
