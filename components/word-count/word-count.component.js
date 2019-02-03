@@ -57,15 +57,14 @@ class WordCountComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('Component is ready');
+    console.info('Word-count component ready');
     this.$cache.textarea.addEventListener('keyup', this.handlers.updateCount);
     this.handlers.updateCount();
     this.$cache.reset.addEventListener('click', this.handlers.reset);
-    console.log(this.handlers.updateCount === this.handlers.updateCount);
   }
   
   disconnectedCallback() {
-    console.log('Component was removed');
+    console.info('Word-count component was removed');
     this.$cache.textarea.removeEventListener('keyup', this.handlers.updateCount);
     this.$cache.reset.removeEventListener('click', this.handlers.reset);
   }

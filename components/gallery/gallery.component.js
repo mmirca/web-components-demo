@@ -41,7 +41,7 @@ class GalleryComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('Gallery component ready');
+    console.info('Gallery component ready');
     this.$cache.slot.addEventListener('slotchange', () => {
       this.images = this.$cache.slot.assignedNodes().filter(item => item.nodeName === 'IMG');
       this.images.forEach(img => {
@@ -56,7 +56,7 @@ class GalleryComponent extends HTMLElement {
   }
   
   disconnectedCallback() {
-    console.log('Gallery component was removed');
+    console.info('Gallery component was removed');
     this.images.forEach(img => img.removeEventListener('click', this.handlers.focusImage));
     this.$cache.viewer.removeEventListener('click', this.handlers.hideViewer);
   }
