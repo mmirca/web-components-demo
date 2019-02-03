@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"dev": "browser-sync . --w --no-inject-changes",	  
-	"test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server .",
+    "dev": "browser-sync . --w --no-inject-changes",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mmirca",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3"
+  }
 }
