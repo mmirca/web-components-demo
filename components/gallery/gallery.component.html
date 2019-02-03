@@ -1,0 +1,12 @@
+<template>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./components/gallery/gallery.component.css">
+    <div class="wrapper">
+      <div class="container border py-4 px-3">
+        <h2 class="text-secondary border-bottom pb-2 mb-3">Gallery</h2>
+        <slot style="display: none"></slot>
+        <div id="cards" class="card-columns"></div>
+      </div>
+    </div>
+  </template>
+  <script src="./gallery.component.js"></script>

@@ -1,0 +1,33 @@
+:host {
+  display: inline-block;
+}
+.card-columns {
+  overflow: hidden;
+}
+.card-columns img {
+  display: block;
+  width: 100%;
+}
+.card-columns .card {
+  transition: transform 0.25s ease-in-out;
+  cursor: pointer;
+}
+.card-columns .card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+@media (min-width: 461px) {
+  .card-columns {
+      -webkit-column-count: 2;
+      -moz-column-count: 2;
+      column-count: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-columns {
+      -webkit-column-count: 3;
+      -moz-column-count: 3;
+      column-count: 3;
+  }
+}
